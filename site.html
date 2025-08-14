@@ -149,8 +149,10 @@ function updateCharts() {
 
   tableData.forEach(row => {
     inboundCounts[row[3]] = (inboundCounts[row[3]] || 0) + 1;
-    upgradeCounts[row[1]] = (upgradeCounts[row[1]] || 0) + 1;
-    hardwareCounts[row[4]] = (hardwareCounts[row[4]] || 0) + 1;
+    const upgradeKey = String(row[1]).toLowerCase() === 'true' ? 'TRUE' : 'FALSE';
+    const hardwareKey = String(row[4]).toLowerCase() === 'true' ? 'TRUE' : 'FALSE';
+    upgradeCounts[upgradeKey] = (upgradeCounts[upgradeKey] || 0) + 1;
+    hardwareCounts[hardwareKey] = (hardwareCounts[hardwareKey] || 0) + 1;
   });
 
   new Chart(document.getElementById('inboundChart'), {
